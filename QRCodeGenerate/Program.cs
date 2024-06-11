@@ -28,9 +28,11 @@ namespace QRCodeGenerate
 
             // Generate the QR code
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            // Set the background color to #0c5d66 (RGB 12, 93, 102)
+            Color backgroundColor = Color.FromArgb(12, 93, 102);
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(vCard, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(4);
+            Bitmap qrCodeImage = qrCode.GetGraphic(4, Color.Black, backgroundColor, true);
 
 
             //// Save the QR code as a PNG image file
