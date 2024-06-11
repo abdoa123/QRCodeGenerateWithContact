@@ -10,21 +10,21 @@ namespace QRCodeGenerate
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter the contact Name:");
-            string name = Console.ReadLine();
+            Console.WriteLine("Enter the contact first name:");
+            string firstName = Console.ReadLine();
+
+            Console.WriteLine("Enter the contact last name:");
+            string lastName = Console.ReadLine();
 
             Console.WriteLine("Enter the contact Phone Number:");
             string phone = Console.ReadLine();
-
-            Console.WriteLine("Enter the contact Company:");
-            string Title = Console.ReadLine();
 
             Console.WriteLine("Enter the contact Email:");
             string Email = Console.ReadLine();
 
 
             // Generate the vCard contact information
-            string vCard = $"BEGIN:VCARD\nVERSION:3.0\nFN:{name}\nEMAIL:{Email}\nORG:{Title}\nTEL;TYPE=cell:{phone}\nEND:VCARD";
+            string vCard = $"BEGIN:VCARD\nVERSION:3.0\nnN:{lastName};{firstName};;;\nFN:{firstName} {lastName}\nNICKNAME:{firstName}\nEMAIL:{Email}\nTEL;TYPE=cell:{phone}\nEND:VCARD";
 
             // Generate the QR code
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
@@ -62,7 +62,7 @@ namespace QRCodeGenerate
 
 
             // Save the final image
-            string finalImagePath = Path.Combine(folderPath, name + "_" + "finalImage.png");
+            string finalImagePath = Path.Combine(folderPath, firstName + "_" + "finalImage.png");
             qrCodeImage.Save(finalImagePath, ImageFormat.Png);
 
             // Display the QR code image using an image viewer application
